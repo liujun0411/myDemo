@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<!-- 注册目标对象-->
+	<bean id = "someService" class="com.lj.aop09.SomeServiceImpl" />
+	
+	<!-- 注册切面：通知 -->
+	<bean id = "myAdivce" class="com.lj.aop09.MyAfterReturningAdvice" />
+	
+	<bean id = "myAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor" >
+		<property name="advice" ref="myAdivce"></property>
+		<!-- 这里的正则表达式匹配的对象是 全限定性方法名 -->
+		<!-- <property name="pattern" value=".+doFirst"></property> -->
+		<!-- <property name="pattern" value=".*doFirst"></property> -->
+		<!-- <property name="patterns" value=".*doFirst,.*doSecond"></property> -->
+		<property name="patterns" value=".*doFirst|.*doSecond"></property>
+	</bean>
+	
+	<!-- 生成代理对象 -->
+	<bean id = "serviceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="someService"></property>
+		<!-- <property name="targetName" value="someService"></property> -->
+		<property name="interceptorNames" value="myAdvisor"></property>
+	</bean>
+	
+	
+	<!-- org.springframework.aop.framework.ProxyFactoryBean 方法存在两个问题
+		1 若存在多个目标对象  则需要使用多次ProxyFactoryBean来创建，配置文件将变得臃肿
+		2 用户真正关心的是目标对象，但是调用的是代理对象。 
+		应为ProxyFactoryBean太弱
+		后面会说道 自动代理生成器
+	 -->
+	
+</beans>

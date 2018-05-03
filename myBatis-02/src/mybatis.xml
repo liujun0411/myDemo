@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+ 
+ <configuration>
+ 
+     <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+ 
+ 	<typeAliases>
+ 	
+ 		<!-- <typeAlias type = "com.lj.entity.Students" alias="student"></typeAlias> -->
+ 		
+ 		<package name="com.lj.entity"/>
+ 		
+ 	</typeAliases>
+ 	
+ 	<environments default="mysqlEM">
+ 		<environment id="mysqlEM">
+ 			<transactionManager type="JDBC"></transactionManager>
+ 			<dataSource type="POOLED">
+ 				<property name="driver" value="com.mysql.jdbc.Driver"/>
+ 				<property name="url" value="jdbc:mysql://localhost:3306/mybatis"/>
+ 				<property name="username" value="root"/>
+ 				<property name="password" value="123456"/>
+ 			</dataSource>
+ 		</environment>
+ 	</environments>
+ 	
+ 	
+ 	<mappers>
+ 		<mapper resource="com/lj/dao/mapper.xml"/>
+ 	</mappers>
+ 	
+ </configuration>

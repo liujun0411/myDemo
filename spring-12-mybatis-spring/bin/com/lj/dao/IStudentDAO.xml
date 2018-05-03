@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lj.dao.IStudentDAO">
+
+	<resultMap id="studentResultMap" type="com.lj.beans.Student" >
+		<id column="id" property="id" jdbcType="INTEGER"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="age" property="age" jdbcType="INTEGER"/>
+		<result column="score" property="score" jdbcType="DOUBLE"/>
+	</resultMap>
+
+    <insert id="insertNewStudent" >
+    	insert into mybatis.students(name , age ,score ) values(#{name} , #{age} ,#{score})
+    </insert>
+
+	<delete id="deleteStudentByID">
+		delete from  mybatis.students where id = #{id}
+	</delete>
+	
+	<update id="updateStudentByID">
+		update mybatis.students set name = #{name} , age = #{age} , score = #{score} where id = #{id}
+	</update>
+
+	<select id="selectStudentNameByID" resultType="String">
+		select name from mybatis.students where id = #{id}
+	</select>
+	
+	<select id="selectStudentByID" resultType="com.lj.beans.Student">
+		select id , name ,age,score from mybatis.students where id = #{id}
+	</select>
+
+	<select id="selectAllStudent" resultMap="studentResultMap">
+		SELECT id , name ,age,score FROM mybatis.students
+	</select>
+	
+	<select id="selectAllStudentName" resultType="String">
+		SELECT name FROM mybatis.students
+	</select>
+
+</mapper>

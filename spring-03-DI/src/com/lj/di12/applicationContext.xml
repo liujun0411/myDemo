@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	
+				<!-- 注册student -->
+	<bean id = "myStudent" class="com.lj.di12.Student" parent="collegeInfo" >
+		<property name="name" value="wh"></property>
+		<property name="age" value="27"></property>
+	</bean>
+	
+			<!-- 注册student -->
+	<bean id = "myStudent2" class="com.lj.di12.Student" parent="collegeInfo" >
+		<property name="name" value="wxq"></property>
+		<property name="age" value="29"></property>
+	</bean>
+	
+	
+			<!-- 注册student -->
+	<bean id = "myStudent3" class="com.lj.di12.Student" parent="collegeInfo" >
+		<property name="name" value="gjc"></property>
+		<property name="age" value="28"></property>
+	</bean>
+	
+	<bean id ="myTeacher" class="com.lj.di12.Teacher"  parent="collegeInfo" >
+		<property name="name" value="lj"></property>
+		<property name="workAge" value="31"></property>
+	</bean>
+	
+	<!-- 此时的bean就叫做同类抽象bean -->
+	<bean id = "collegeInfo"  abstract="true">
+		<property name="college" value="DH"></property>
+		<property name="department" value="electoric"></property>
+	</bean>
+	
+	
+</beans>

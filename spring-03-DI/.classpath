@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="lib/com.springsource.org.apache.commons.logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/com.springsource.org.apache.log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="lib/junit5-r5.1.0.zip"/>
+	<classpathentry kind="lib" path="lib/spring-beans-5.0.0.RELEASE.jar" sourcepath="C:/Users/huyanhua/AppData/Local/Temp/.org.sf.feeling.decompiler1523602257617/source/spring-beans-5.0.0.RELEASE-sources-1523604933362.jar"/>
+	<classpathentry kind="lib" path="lib/spring-context-5.0.0.RELEASE.jar" sourcepath="C:/Users/huyanhua/AppData/Local/Temp/.org.sf.feeling.decompiler1523499404311/source/spring-context-5.0.0.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="lib/spring-core-5.0.0.RELEASE.jar" sourcepath="C:/Users/huyanhua/AppData/Local/Temp/.org.sf.feeling.decompiler1523499404311/source/spring-core-5.0.0.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="lib/spring-expression-5.0.0.RELEASE.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

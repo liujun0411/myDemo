@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<!-- 注册切面-->
+	<bean id = "myAspect" class="com.lj.xml.MyAspect" />
+	
+	<bean id = "someService" class="com.lj.xml.SomeServiceImpl" />
+	
+	<aop:config>
+		<aop:pointcut expression="execution(* *..ISomeService.doFirst(..))" id="doFirstAopPointCut"/>
+		<aop:pointcut expression="execution(* *..ISomeService.doSecond(..))" id="doSecondAopPointCut"/>
+		<aop:pointcut expression="execution(* *..ISomeService.doThird(..))" id="doThirdAopPointCut"/>
+		
+		<aop:aspect ref="myAspect">
+			<aop:before method="before" pointcut-ref="doFirstAopPointCut"/>
+			<aop:before method="before(org.aspectj.lang.JoinPoint)" pointcut-ref="doFirstAopPointCut"/>
+			
+			<aop:after-returning method="afterM" pointcut-ref="doSecondAopPointCut"/>
+			<aop:after-returning method="afterM(java.lang.Object)" pointcut-ref="doSecondAopPointCut" returning="result"/>
+			
+			<aop:around method="myAround" pointcut-ref="doThirdAopPointCut"/>
+			
+			<aop:after-throwing method="myAfterThrowing(java.lang.Exception)" pointcut-ref="doThirdAopPointCut" throwing="el"/>
+			
+			<aop:after method="myAfter" pointcut-ref="doThirdAopPointCut"/>
+			
+		</aop:aspect>
+	</aop:config>
+	
+	
+</beans>

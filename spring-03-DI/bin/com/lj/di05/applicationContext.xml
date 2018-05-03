@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<!-- 注册student -->
+	<bean id = "myCollect" class="com.lj.di05.Collection" >
+		<property name="schools">
+			<array>
+				<ref bean ="mySchool"/>
+				<ref bean ="mySchool2"/>
+			</array>
+		</property>
+		
+		<property name="myStrs">
+			<array>
+				<value>wh</value>
+				<value>gjc</value>
+			</array>
+		</property>
+		
+		<property name="myList">
+			<list>
+				<value>plt</value>	
+				<value>yc</value>		
+			</list>
+		</property>
+		
+		<property name="mySet">
+			<set>
+				<value>swf</value>
+				<value>wxq</value>
+			</set>
+		</property>
+		
+		<property name="myMap">
+			<map>
+				<entry key="phone" value="13816527217"></entry>
+				<entry key="mail" value="361883123@qq.com"></entry>
+			</map>
+		</property>
+		
+		<property name="myProp">
+			<props>
+				<prop key="oral">gjc</prop>
+				<prop key="ass">wxq</prop>
+			</props>
+		</property>
+		
+	</bean>
+	
+	<bean id = "mySchool" class="com.lj.di05.School" >
+		<property name="name" value="DH unvisitery"></property>
+	</bean>
+	
+	<bean id = "mySchool2" class="com.lj.di05.School" >
+		<property name="name" value="China normal unvisitery"></property>
+	</bean>
+</beans>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.lj.dao.INewsLabelsDao">
+ 	
+		
+ 	
+ 	<resultMap type="NewsLabel" id="newsLabelMapper2">
+ 		<id column="id" property="id"/>
+ 		<result column="name" property="name"/>
+ 		<association property="parent"
+ 					 javaType="NewsLabel"
+ 					 select="selectNewsLabelById"
+ 					 column="pid">
+ 		</association>
+ 	</resultMap>
+ 	
+ 	
+	<select id="selectNewsLabelById" resultMap="newsLabelMapper2">
+ 		select id , name ,pid from mybatis.newslabel where id = #{xxx}
+ 	</select>	
+ 	
+
+	
+ </mapper>
