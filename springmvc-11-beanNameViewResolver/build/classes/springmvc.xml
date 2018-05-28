@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:context="http://www.springframework.org/schema/context"
+xmlns:aop="http://www.springframework.org/schema/aop"
+xmlns:tx="http://www.springframework.org/schema/tx"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	
+	<!-- 如果此处不进行任何配置 将注册的是InternalResourceViewResolver 视图解析器 
+		InternalResourceViewResolver视图解析器最大的问题 在于无法使用外部资源
+		tip：使用org.springframework.web.servlet.view.JstlView包的时候 需要导入
+			jstl-1.2.jar包
+	 -->
+	<bean class = "org.springframework.web.servlet.view.BeanNameViewResolver"/>
+	
+	<bean id = "taobao" class = "org.springframework.web.servlet.view.RedirectView">
+		<property name="url" value="http://www.taobao.com"/>
+	</bean>
+	
+	<bean id = "baidu" class = "org.springframework.web.servlet.view.RedirectView">
+		<property name="url" value="http://www.baidu.com"/>
+	</bean>
+	
+	<bean id = "welcome" class = "org.springframework.web.servlet.view.JstlView">
+		<property name="url" value="/WEB-INF/jsp/welcome.jsp"/>
+	</bean>
+	
+	<!--  注册处理器     -->
+	<bean id="/my.do" class="com.lj.handlers.MyController"/>
+
+</beans>

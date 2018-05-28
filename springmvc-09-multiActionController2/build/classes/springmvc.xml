@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:context="http://www.springframework.org/schema/context"
+xmlns:aop="http://www.springframework.org/schema/aop"
+xmlns:tx="http://www.springframework.org/schema/tx"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<bean class = "org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="urlMap">
+			<map>
+				<entry key="/*.do" value-ref="myController"></entry>
+			</map>
+		</property>	
+	</bean>
+	
+	<!-- 注册方法名解析器，可以通过配置让请求精确到方法 
+		此处为PropertiesMethodNameResolver
+		浏览器输入模式为 http://localhost:8080/springmvc-09-multiActionController2/second.do-->
+	<bean id = "propertiesMethod" 
+		class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
+		<property name="mappings">
+			<props>
+				<prop key="/first.do">doFirst</prop>
+				<prop key="/second.do">doSecond</prop>
+			</props>
+		</property>
+	</bean>
+	
+	
+	<!--  注册处理器     -->
+	<bean id="myController" class="com.lj.handlers.MyController">
+		<property name="methodNameResolver" ref="propertiesMethod"/>
+	</bean>
+	
+
+</beans>

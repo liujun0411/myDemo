@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns="http://java.sun.com/xml/ns/javaee" 
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>springmvc-01-primary</display-name>
+  
+<!--     <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+              加入Spring总体配置文件
+            classpath:liujun-servlet.xml
+            /WEB-INF/classes/applicationContext.xml,/WEB-INF/classes/spring-srevlet.xml
+        </param-value>
+    </context-param>
+
+    Spring监听器
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener> -->
+  
+  <servlet>
+  		<servlet-name>liujun</servlet-name>
+  		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		
+		<!-- 指定springMVC的配置文件的路径和名称 -->
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:springmvc.xml</param-value>
+		</init-param>
+		
+		<!-- 让springMVC的servlet容器在tomcat启动时就建立 -->
+		<load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+  		<servlet-name>liujun</servlet-name>
+  		<!-- 此处需要使用*.do,如果使用/*那么会拦截所有资源，如果使用/会拦截静态资源 -->
+  		<!-- <url-pattern>*.do</url-pattern> -->
+  		
+  		<!-- 而再restful形式中  有可能会使用 方法/参数  所以有可能需要/ 
+  			同时也可以通过别的配置来完善  /这种配置方式-->
+  		<url-pattern>/</url-pattern>
+  </servlet-mapping>
+  
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

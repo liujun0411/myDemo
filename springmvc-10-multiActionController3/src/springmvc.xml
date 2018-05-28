@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:context="http://www.springframework.org/schema/context"
+xmlns:aop="http://www.springframework.org/schema/aop"
+xmlns:tx="http://www.springframework.org/schema/tx"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<bean class = "org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="urlMap">
+			<map>
+				<entry key="/*.do" value-ref="myController"></entry>
+			</map>
+		</property>	
+	</bean>
+	
+	<!-- 注册方法名解析器，可以通过配置让请求精确到方法 
+		此处为parameterMethodNameResolver
+		浏览器输入模式为http://localhost:8080/springmvc-10-multiActionController3/my.do?xxx=doFirst-->
+	<bean id = "parameterMethodNameResolver" 
+		class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+		<!-- 此处查看源码后发现DEFAULT_PARAM_NAME = "action" 
+			所以当注释下面paramName时  方法名为action-->
+		<!-- <property name="paramName" value="xxx"/> -->
+	</bean>
+	
+	
+	<!--  注册处理器     -->
+	<bean id="myController" class="com.lj.handlers.MyController">
+		<property name="methodNameResolver" ref="parameterMethodNameResolver"/>
+	</bean>
+	
+
+</beans>
