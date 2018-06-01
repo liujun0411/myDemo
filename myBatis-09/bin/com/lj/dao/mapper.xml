@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.lj.dao.ICountryDao">
+ 	
+ 	<select id="selectMinisterByCountry" resultType="Minister">
+ 		select mid , mname from minister where countryid = #{cid}
+ 	</select>
+ 
+ 
+ 	<resultMap type="Country" id="countryMapper">
+ 		<id column="cid" property="cid"/>
+ 		<result column="cname" property="cname"/>
+ 		<collection property="ministers" 
+ 					ofType="Minister"
+ 					select="selectMinisterByCountry"
+ 					column="cid">
+ 		</collection>
+ 	</resultMap>
+	
+	<select id="SelectCountryByID" resultMap="countryMapper">
+		select cid , cname from mybatis.country  where  cid = #{xxx}
+	</select>
+	
+	
+	 <resultMap type="Country" id="countryMapper2">
+ 		<id column="cid" property="cid"/>
+ 		<result column="cname" property="cname"/>
+ 		<collection property="ministers" 
+ 					ofType="Minister">
+ 			<id column="mid" property="mid"/>
+ 			<result column="mname" property="mname"/>
+ 		</collection>
+ 	</resultMap>
+	
+	<select id="SelectCountryByID2" resultMap="countryMapper2">
+		select cid , cname ,mid,mname from mybatis.country , mybatis.minister where cid = countryid and  cid = #{xxx}
+	</select>
+	
+		
+ </mapper>

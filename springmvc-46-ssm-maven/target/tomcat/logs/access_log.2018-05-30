@@ -1,0 +1,17 @@
+0:0:0:0:0:0:0:1 - - [30/May/2018:14:51:08 +0800] "GET /springmvc-46-ssm-maven HTTP/1.1" 302 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [30/May/2018:14:51:08 +0800] "GET /springmvc-46-ssm-maven/ HTTP/1.1" 200 57 http-bio-8080-exec-3 428
+0:0:0:0:0:0:0:1 - - [30/May/2018:15:12:58 +0800] "GET /springmvc-46-ssm-maven HTTP/1.1" 404 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [30/May/2018:15:12:58 +0800] "GET /springmvc-46-ssm-maven HTTP/1.1" 404 - http-bio-8080-exec-3 0
+0:0:0:0:0:0:0:1 - - [30/May/2018:15:13:07 +0800] "GET /springmvc-46-ssm-maven/ HTTP/1.1" 404 - http-bio-8080-exec-4 0
+0:0:0:0:0:0:0:1 - - [30/May/2018:15:13:07 +0800] "GET /springmvc-46-ssm-maven/ HTTP/1.1" 404 - http-bio-8080-exec-5 0
+0:0:0:0:0:0:0:1 - - [30/May/2018:15:13:44 +0800] "GET /springmvc-46-ssm-maven/index.jsp HTTP/1.1" 404 - http-bio-8080-exec-6 0
+0:0:0:0:0:0:0:1 - - [30/May/2018:15:13:44 +0800] "GET /springmvc-46-ssm-maven/index.jsp HTTP/1.1" 404 - http-bio-8080-exec-8 0
+0:0:0:0:0:0:0:1 - - [30/May/2018:15:13:50 +0800] "GET /springmvc-46-ssm-maven/index.jsp HTTP/1.1" 404 - http-bio-8080-exec-9 0
+0:0:0:0:0:0:0:1 - - [30/May/2018:15:14:21 +0800] "GET /springmvc-46-ssm-maven/index.jsp HTTP/1.1" 404 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [30/May/2018:15:14:26 +0800] "GET /springmvc-46-ssm-maven HTTP/1.1" 404 - http-bio-8080-exec-3 0
+0:0:0:0:0:0:0:1 - - [30/May/2018:15:14:26 +0800] "GET /springmvc-46-ssm-maven HTTP/1.1" 404 - http-bio-8080-exec-4 0
+0:0:0:0:0:0:0:1 - - [30/May/2018:15:14:35 +0800] "GET / HTTP/1.1" 404 - http-bio-8080-exec-5 0
+0:0:0:0:0:0:0:1 - - [30/May/2018:15:14:35 +0800] "GET / HTTP/1.1" 404 - http-bio-8080-exec-7 0
+0:0:0:0:0:0:0:1 - - [30/May/2018:15:32:34 +0800] "GET /springmvc-46-ssm-maven HTTP/1.1" 302 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [30/May/2018:15:32:34 +0800] "GET /springmvc-46-ssm-maven/ HTTP/1.1" 200 562 http-bio-8080-exec-3 404
+0:0:0:0:0:0:0:1 - - [30/May/2018:15:33:15 +0800] "POST /springmvc-46-ssm-maven/liujun/register.do HTTP/1.1" 200 213 http-bio-8080-exec-4 407

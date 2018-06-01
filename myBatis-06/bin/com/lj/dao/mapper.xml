@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.lj.dao.INewsLabelsDao">
+ 	
+ 	<resultMap type="NewsLabel" id="newsLabelMapper">
+ 		<id column="id" property="id"/>
+ 		<result column="name" property="name"/>
+ 		<collection property="childrenLabel"
+ 					ofType="NewsLabel"
+ 					select="selectChildrenByParent"
+ 					column="id"/>
+ 	</resultMap>
+ 	
+ 	<select id="selectChildrenByParent" resultMap="newsLabelMapper">
+ 		select id , name from mybatis.newslabel where pid = #{xxx}
+ 	</select>
+		
+	<!-- *************分割先****下面的例子 感觉要是循环嵌套查询的样子********************* -->
+
+	
+	<select id="selectChildrenByParent2" resultMap="newsLabelMapper2">
+ 		select id , name from mybatis.newslabel where pid = #{xxx}
+ 	</select>
+		
+ 	
+ 	<resultMap type="NewsLabel" id="newsLabelMapper2">
+ 		<id column="id" property="id"/>
+ 		<result column="name" property="name"/>
+ 		<collection property="childrenLabel"
+ 					ofType="NewsLabel"
+ 					select="selectChildrenByParent2"
+ 					column="id"/>
+ 	</resultMap>
+ 	
+ 	
+	<select id="selectNewsLabelById" resultMap="newsLabelMapper2">
+ 		select id , name from mybatis.newslabel where id = #{xxx}
+ 	</select>	
+ 	
+ </mapper>

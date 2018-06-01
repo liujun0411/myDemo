@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.lj.dao.IStudentDao">
+	
+	<select id="selectStudentsByConditionIf" resultType="Students">
+		select id,name,age,score 
+		from mybatis.students 
+		where 1 = 1
+		<if test="name != null and name != ''">
+			and name like '%' #{name} '%' 
+		</if>
+		<if test="age > 0">
+			and age &lt; #{age}
+		</if>
+		<if test="score > 0">
+		 	and score  &gt; #{score}
+		 </if>
+	</select>
+	
+<!-- 	<select id="selectStudentsByCondition" resultType="Students">
+		select id,name,age,score 
+		from mybatis.students 
+		<where>
+			<if test="name != null and name != ''">
+				name like '%' #{name} '%' 
+			</if>
+			<if test="age > 0">
+				and age &lt; #{age}
+			</if>
+			<if test="score > 0">
+		 		and score  &gt; #{score}
+		 	</if>
+		 </where>
+	</select> -->
+	
+	<select id="selectStudentsByConditionWhere" resultType="Students">
+		select id,name,age,score 
+		from mybatis.students 
+		<where>
+			<if test="name != null and name != ''">
+				and name like '%' #{name} '%' 
+			</if>
+			<if test="age > 0">
+				and age &lt; #{age}
+			</if>
+			<if test="score > 0">
+		 		and score  &gt; #{score}
+		 	</if>
+		 </where>
+	</select>
+	
+	<!-- choose和 when 的标签   和java中的case概念很像，如果之前的条件满足 则不需要考虑以后的条件   最终如果都不满足则使用otherwise标签里面的内容 -->
+	<select id="selectStudentsByConditionChoose" resultType="Students">
+		select id,name,age,score 
+		from mybatis.students 
+		<where>
+			<choose>
+				<when test="name != null and name != ''">
+					and name like '%' #{name} '%' 
+				</when>
+				<when test="age > 0">
+					and age &lt; #{age}
+				</when>
+				<when test="score > 0">
+					and score  &gt; #{score}
+				</when>
+				<otherwise>
+					1 = 2
+				</otherwise>
+			</choose>	
+		</where>
+	</select>
+	
+	
+ 	<select id="selectStudentsByConditionForeach1" resultType="Students">
+		select id,name,age,score 
+		from mybatis.students 
+		<if test="array.length > 0">
+			where id in
+			<foreach collection="array" item="myid" open="(" separator="," close=")">
+				#{myid}
+			</foreach>
+		</if>
+	</select>
+	
+	 <select id="selectStudentsByConditionForeach2" resultType="Students">
+		select id,name,age,score 
+		from mybatis.students 
+		<if test="list.size > 0">
+			where id in
+			<foreach collection="list" item="myid" open="(" separator="," close=")">
+				#{myid}
+			</foreach>
+		</if>
+	</select>
+	
+	<select id="selectStudentsByConditionForeach3" resultType="Students">
+		select id,name,age,score 
+		from mybatis.students 
+		<if test="list.size > 0">
+			where id in
+			<foreach collection="list" item="stu" open="(" separator="," close=")">
+				#{stu.id}
+			</foreach>
+		</if>
+	</select>
+	
+	<sql id="selectTitle">
+		select id,name,age,score 
+		from mybatis.students 
+	</sql>
+	
+	<select id="selectStudentsByConditionSqlFra" resultType="Students">
+		<include refid="selectTitle"></include>
+		<if test="list.size > 0">
+			where id in
+			<foreach collection="list" item="stu" open="(" separator="," close=")">
+				#{stu.id}
+			</foreach>
+		</if>
+	</select>
+		
+ </mapper>
